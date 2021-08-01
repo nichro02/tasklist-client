@@ -16,7 +16,10 @@ const InputTodo = () => {
                 body: JSON.stringify(body)
             })
 
+            //verify data sent to db
             console.log(response)
+            //
+            window.location='/'
         } catch (error) {
             console.error(error.message)
         }
