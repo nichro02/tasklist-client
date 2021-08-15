@@ -1,9 +1,28 @@
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 
 const ListTodos = () => {
-    return(
+  //use state to map over fetched data
+  const [todos, setTodos] = useState([])
+  //fetch todos
+  const getTodos = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/todos')
+      const jsonData = await response.json()
+
+      console.log(jsonData)
+      //setTodos to fetched data
+      setTodos(jsonData)
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+  
+  useEffect(() => {
+    getTodos()
+  })
+  return(
         <Fragment>
-            <table class="table mt-5 text-center">
+            <table className="table mt-5 text-center">
     <thead>
       <tr>
         <th>Description</th>
