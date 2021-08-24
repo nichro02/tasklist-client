@@ -16,6 +16,22 @@ const ListTodos = () => {
       console.error(error.message)
     }
   }
+
+  //delete todo
+  const deleteTodo = async (id) => {
+    try {
+      //send delete request to database
+      const del = await fetch(`http://localhost:5000/todos/${id}`, {method: 'DELETE'})
+      
+      //filter todos
+      setTodos(todos.filter(todo => todo.todo_id !== id))
+
+      //verify todo has been deleted
+      //console.log(del)
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
   
   useEffect(() => {
     getTodos()
@@ -45,7 +61,7 @@ const ListTodos = () => {
           <td>{todo.description}</td>
           <td>Edit</td>
           <td>
-            <button className='btn btn-danger'>Delete</button>
+            <button className='btn btn-danger' onClick={() => deleteTodo(todo.todo_id)}>Delete</button>
           </td>
         </tr>
       ))}
