@@ -1,18 +1,22 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 
-const EditTodo = () => {
+const EditTodo = ({ todo }) => {
+    //verify todo prop has been passed
+    console.log(todo)
+    //use state to track edit being entered
+    const [description, setDescription] = useState(todo.description)
     return(
         <Fragment>
             <button
                 type='button'
                 className='btn btn-warning'
                 data-bs-toggle='modal'
-                data-bs-target='#myModal'
+                data-bs-target={`#id${todo.todo_id}`}
             >
                 Edit
             </button>
 
-            <div className='modal' id='myModal'>
+            <div className='modal' id={`id${todo.todo_id}`}>
                 <div className='modal-dialog'>
                     <div className='modal-content'>
                         <div className='modal-header'>
@@ -28,7 +32,11 @@ const EditTodo = () => {
                         </div>
 
                         <div className='modal-body'>
-                            <input type='text' className='form-control'/>
+                            <input 
+                                type='text'
+                                className='form-control'
+                                value={description}
+                            />
                         </div>
 
                         <div className='modal-footer'>
