@@ -35,7 +35,7 @@ const EditTodo = ({ todo }) => {
                 Edit
             </button>
 
-            <div className='modal' id={`id${todo.todo_id}`}>
+            <div className='modal' id={`id${todo.todo_id}`} onClick={() => setDescription(todo.description)}>
                 <div className='modal-dialog'>
                     <div className='modal-content'>
                         <div className='modal-header'>
@@ -45,6 +45,7 @@ const EditTodo = ({ todo }) => {
                                 class="btn-close"
                                 data-bs-dismiss="modal"
                                 aria-label="Close"
+                                onClick={() => setDescription(todo.description)}
                             >
                             </button>
                             
@@ -73,6 +74,7 @@ const EditTodo = ({ todo }) => {
                                 className= 'btn btn-danger'
                                 data-dismiss='modal'
                                 data-bs-dismiss='modal'
+                                onClick={() => setDescription(todo.description)}
                             >
                                 Close
                             </button>
